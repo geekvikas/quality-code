@@ -25,9 +25,10 @@
 
 Launch extension installation by pressing CMD+P
 
-`ext install dbaeumer.vscode-eslint`
-
-`ext install esbenp.prettier-vscode`
+<pre>
+ext install dbaeumer.vscode-eslint
+ext install esbenp.prettier-vscode
+</pre>
 
 ### Edit settings.json for VSCode to have these options
 
@@ -47,3 +48,27 @@ Launch extension installation by pressing CMD+P
         "source.fixAll.stylelint": true
     }
 </pre>
+
+### Your package.json should have these commands / blocks
+
+<pre>
+ "scripts": {
+    "format": "prettier --write 'src/**/*.{js,jsx,css,scss}'",
+    "lint": "eslint 'src/**/*.{js,jsx}' --fix",
+  },
+  "lint-staged": {
+    "**/*.js?": [
+      "npm run lint",
+      "npm run format",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  </pre>

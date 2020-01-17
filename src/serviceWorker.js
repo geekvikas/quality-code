@@ -140,10 +140,3 @@ export function unregister() {
     });
   }
 }
-const test = function() {
-  const a = 1;
-  const b = 2;
-  const c = a > b ? a < b : b > a;
-  console.log(c);
-};
-test();
